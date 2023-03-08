@@ -2,8 +2,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title="Text Search", layout="centered", page_icon="📝")
-# DATA_FILEPATH = r"C:\Users\14097\OneDrive\Desktop\Zillow_Austin_11-16-22.csv"
+st.set_page_config(page_title="Austin Zillow Homes Search", layout="centered", page_icon="🏠")
 url = 'https://raw.githubusercontent.com/joe-bryan/search-zillow/main/Zillow_Austin_11-16-22.csv'
 
 @st.cache
@@ -30,7 +29,7 @@ def generate_barplot(results:pd.DataFrame, count_column:str, top_n:int=10):
     ).mark_bar().encode(
         y=alt.Y(f'{count_column}:N', sort='-x', axis=alt.Axis(title='Number of Beds')),
         x=alt.X('count:Q', axis=alt.Axis(title='Count')),
-        tooltip=[alt.Tooltip(f'{count_column}:N', title='Number of beds in home'),  alt.Tooltip('count:Q', title='Count of homes')]
+        tooltip=[alt.Tooltip(f'{count_column}:N', title='Number of beds in home'), alt.Tooltip('count:Q', title='Count of homes')]
     ).configure_axis(
         grid=False
     ).configure_view(
@@ -43,14 +42,14 @@ def generate_barplot(results:pd.DataFrame, count_column:str, top_n:int=10):
 
 def app():
     """ Search Streamlit App """
-    st.title("Text Search 📝")
+    st.title("Austin Homes Search 🏠")
 
     # load data from local csv as dataframe
     df = load_data(url)
 
     # search box
     with st.form(key='Search'):
-        text_query = st.text_input(label='Enter text to search')
+        text_query = st.text_input(label='Enter address part to search')
         submit_button = st.form_submit_button(label='Search')
     
     # if button is clicked, run search
