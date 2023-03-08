@@ -20,7 +20,7 @@ def search_dataframe(df:pd.DataFrame, column:str, search_str:str) -> pd.DataFram
 def generate_barplot(results:pd.DataFrame, count_column:str, top_n:int=10):
     """load results from search_dataframe() and create barplot """
     return alt.Chart(results).transform_aggregate(
-        count='count()',
+        Count='count()',
         groupby=[f'{count_column}']
     ).transform_window(
         rank='rank(count)',
