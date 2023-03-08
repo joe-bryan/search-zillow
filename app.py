@@ -6,7 +6,7 @@ st.set_page_config(page_title="Text Search", layout="centered", page_icon="📝"
 # DATA_FILEPATH = r"C:\Users\14097\OneDrive\Desktop\Zillow_Austin_11-16-22.csv"
 url = 'https://raw.githubusercontent.com/joe-bryan/search-zillow/main/Zillow_Austin_11-16-22.csv'
 
-@st.cache_data
+@st.cache
 def load_data(filepath:str) -> pd.DataFrame:
     """ Load data from local CSV """
     return pd.read_csv(filepath).fillna("")
