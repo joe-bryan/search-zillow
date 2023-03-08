@@ -29,7 +29,7 @@ def generate_barplot(results:pd.DataFrame, count_column:str, top_n:int=10):
         alt.datum.rank < top_n
     ).mark_bar().encode(
         y=alt.Y(f'{count_column}:N', sort='-x', title='Number of Beds'),
-        x=alt.X('count:Q', title='Count'),
+        x='count:Q',
         tooltip=[f'{count_column}:N', 'count:Q']
     ).properties(
         width=700,
