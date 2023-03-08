@@ -30,7 +30,7 @@ def generate_barplot(results:pd.DataFrame, count_column:str, top_n:int=10):
     ).mark_bar().encode(
         y=alt.Y(f'{count_column}:N', sort='-x', axis=alt.Axis(title='Number of Beds')),
         x=alt.X('count:Q', axis=alt.Axis(title='Count')),
-        tooltip=[alt.Tooltip(f'{count_column}:N', title='Homes with  beds'),  alt.Tooltip('count:Q', title='Appear this many times')]
+        tooltip=[alt.Tooltip(f'{count_column}:N', title='Number of beds in home'),  alt.Tooltip('count:Q', title='Count of homes')]
     ).configure_axis(
         grid=False
     ).configure_view(
