@@ -28,9 +28,13 @@ def generate_barplot(results:pd.DataFrame, count_column:str, top_n:int=10):
     ).transform_filter(
         alt.datum.rank < top_n
     ).mark_bar().encode(
-        y=alt.Y(f'{count_column}:N', sort='-x', title='Number of Beds'),
+        y=alt.Y(f'{count_column}:N', sort='-x', axis=alt.Axis(labelAngle=90, title='Number of Beds')),
         x=alt.X('count:Q', axis=alt.Axis(title='Count')),
         tooltip=[f'{count_column}:N', 'count:Q']
+    ).configure_axis(
+        grid=False
+    ).configure_view(
+        strokeWidth=0
     ).properties(
         width=700,
         height=400
